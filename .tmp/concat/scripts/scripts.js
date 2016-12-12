@@ -142,7 +142,7 @@ Mahjong.controller('gameCtrl', ['$scope', '$http', 'players', 'game', 'storage',
 
     var init = function(){
         $scope.$watch('lang', function(){
-            $http.get('scripts/translations/translation_' + $scope.lang + '.json')
+            $http.get('/translations/translation_' + $scope.lang + '.json')
                 .success(function(response) {
                     $scope.text = response;
                 });
