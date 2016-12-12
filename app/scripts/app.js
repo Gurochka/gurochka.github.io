@@ -1,1 +1,0 @@
-Mahjong = angular.module('mahjong', []);
