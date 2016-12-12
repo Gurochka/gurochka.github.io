@@ -1,0 +1,135 @@
+{
+    "RULES": "Rules",
+    "NEXT" : "Next",
+    "CLOSE": "Close",
+    "START_NEW_GAME": "Start new game",
+    "START_GAME": "START GAME",
+    "MAHJONG": "Chinese Classical Mahjong",
+    "ROUND_IS_DONE": "End of round! The winds were changed!",
+
+    "EAST": "East",
+    "WEST": "West",
+    "NORTH": "North",
+    "SOUTH": "South",
+    "EASTERN": "East",
+    "WESTERN": "West",
+    "NORTHERN": "North",
+    "SOUTHERN": "South",
+
+    "description": {
+        "HEADER": "About this page",
+        "FIRST_PARAGRAPH": "We like to play Mahjong. We gather in the evenings and play 4-6 hours in a row.",
+        "SECOND_PARAGRAPH": "But there is a problem. Calculations get me everytime (a couple of hours from start it's getting hard to concentrate. Especially if you are tired or not playing at all! =))",
+        "THIRD_PARAGRAPH": "So I decided to develop this page to help myself. It calculates hands of players and notes down all results for me.",
+        "FOURTH_PARAGRAPH": "I hope that this page will help you if you like to play Mahjong too! =)",
+        "FIFTH_PARAGRAPH": "Some rules are differs from Classical Mahjong rules (for simplification):",
+        "FIRST_LIST": "Every game contains two rounds (Classical rules contains 4 games).",
+        "SECOND_LIST": "Limit sum for hand is 500 points. Start Money balance is 2000 points.",
+        "THIRD_LIST": "We shift the prevailing winds counterclockwise. In Classical rules it's more complex."
+    },
+    "contacts": {
+        "PARAGRAPH": "If you notice some bug, mistake or you have some offer for game you can write here:",
+        "EMAIL_PLACEHOLDER": "Your email address*",
+        "EMAIL_HELPER": "*Required if you want me to answer",
+        "MESSAGE_PLACEHOLDER": "Message",
+        "SEND": "Send"
+    },
+    "players": {
+        "TITLE": "Start the game",
+        "RULES": "There are four players in a game (one for wind). Every player should throw dice in the beginning - the highest takes the East wind and another players have a winds (counterclockwise): South, West, North.",
+        "INPUT_PLACEHOLDER": "Player name",
+        "LABEL": "Enter the names of the players:"
+    },
+    "game": {
+        "FIRST_PARAGRAPH": "",
+        "SECOND_PARAGRAPH": "",
+        "THIRD_PARAGRAPH": "",
+        "GAME": "game",
+        "POINTS": "Score",
+        "PREVAILING_WIND": "Prevailing wind is",
+        "RESULTS": "Results",
+        "POINTS_COUNT": "Total points",
+        "MONEY_SUM": "Money balance"
+    },
+    "handDialog": {
+        "TITLE": "Scoring for player",
+        "FIRST_HELPER": "Pick up tiles in the hand",
+        "SECOND_HELPER": "Open up tiles in the hand and pick up additional options",
+        "HAND_IS_READY": "Hand is gathered!",
+        "HAND": "Hand",
+        "PREVIOUS_STEP": "Previous step",
+        "COUNT": "Calculate!",
+        "READY": "Done",
+        "SUM": "Score"
+    },
+    "hand": {
+        "MAHJONG": "Mah Jong",
+        "LAST_BONE_FROM_WALL": "The winning tile from the wall",
+        "THE_ONLY_POSIBLE": "Went Mah Jong with the only possible tile",
+        "KONG_ROBBERY": "Mah Jong by Robbing the Kong",
+        "READY_HAND_FROM_START": "Mahjong after first discard",
+        "BEFORE_DEAD_WALL": "Mah Jong with the last tile from the wall",
+        "BEFORE_DAED_WALL_1_PIN": " and it is 1 of Circle",
+        "FREE_BONE": "Mah Jong with a loose tile",
+        "FREE_BONE_5_PIN": "and it is 5 of Circle",
+        "LIMITED_COMBINATION": "Лимитированная комбинация:",
+
+        "limited": {
+            "THIRTEEN_ORPHANS": "Thirteen Orphans",
+            "TREASURE": "Hidden Treasure",
+            "HONOURS": "Grand honours",
+            "HEADS_AND_TAILS": "Heads and Tails",
+            "IMPERIAL_JADE": "Imperial jade (all green)",
+            "HEAVENLY_TWINS": "Heavenly twins",
+            "GRAND_MASTERS": "Three grand masters",
+            "FOUR_BLESSINGS": "Four blessings",
+            "FOURFOLD_PLENTY": "Fourfold Plenty",
+            "MOON_IN_THE_SEA": "Plucking the Moon from the Bottom of the Sea",
+            "GATHERING_BLOSSOM": "Gathering the Plum Blossom from the Roof"
+        },
+
+        "doublings": {
+            "DRAGONS": "Triple or quadruple of dragons",
+            "OWN_WINDS": "Triple or quadruple of own winds",
+            "PREVAILING_WINDS": "Triple or quadruple of prevailing winds",
+            "HALF_SUITE": "Half suite (one suite only + dragons/winds)",
+            "FULL_SUITE": "Full suite (one suite only)",
+            "ONLY_19_DRAGONS_WINDS": "Only 1s, 9s, dragons and winds",
+            "ONLY_DRAGONS_WINDS": "Only dragons and winds",
+            "ONE_SUIT": "Full set of one type bonuses",
+            "OWN_PREVAILING_BONUS": "Own or prevailing bonus (season or flower)"
+        },
+
+        "mahjong_doublings": {
+            "ONLY_PANGS": "Only pangs",
+            "CONCEALED_HAND": "Fully Concealed Hand",
+            "NO_POINTS": "No points (minimum)",
+            "LOOSE_TILE": "Out on a loose tile",
+            "LAST_TILE": "Out on last tile of wall",
+            "ROBBING_KONG": "Robbing the Kong",
+            "LITTLE_THREE_WINDS": "Little Three Winds",
+            "LITTLE_THREE_DRAGONS": "Little Three Dragons",
+            "READY_HAND": "\"Ready hand\" after first discard",
+            "TWO_THRE_KONGS": "Two or three kongs"
+        },
+
+        "scoring": {
+            "MAHJONG": "Mahjong",
+            "CLOSED": "Concealed",
+            "OPENED": "Melded",
+            "PANG": " pang of ",
+            "KONG": " kong of ",
+            "PAIR": "Pair of ",
+            "BONUSES": "Bonuses",
+
+            "PIN": "pin",
+            "BAMBOO": "bamboo",
+            "MAN": "man",
+            "DRAGON": "dragon",
+            "WIND": "wind"
+        }
+
+    }
+
+
+}
