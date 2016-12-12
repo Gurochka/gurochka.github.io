@@ -1,0 +1,1 @@
+Mahjong = angular.module('mahjong', []);

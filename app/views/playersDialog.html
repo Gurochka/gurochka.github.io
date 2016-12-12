@@ -1,0 +1,26 @@
+<div class="modal fade active" id="playersPositions">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{text.players.TITLE}}</h4>
+            </div>
+            <div class="modal-body">
+                <p class="info">{{text.players.RULES}} </p>
+                <label>{{text.players.LABEL}}</label>
+                <form class="form-horizontal">
+                    <div class="form-group" ng-repeat="player in players">
+                        <label class="col-sm-2 control-label">{{getWindName(player.wind)}}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="{{text.players.INPUT_PLACEHOLDER}}" ng-model="player.name">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{text.CLOSE}}</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="startNewGame()"> {{text.NEXT}}  <i class="glyphicon glyphicon-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
