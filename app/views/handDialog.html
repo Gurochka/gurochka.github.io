@@ -1,0 +1,129 @@
+<div class="modal fade" id="countPoints" ng-controller="handCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{text.handDialog.TITLE}}</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="hand">
+                    <table>
+                        <tr>
+                            <td ng-repeat="bone in hand.bones">
+                                <div ng-class="{closed: !bone.opened && hand.mode != 'picking hand'}" ng-click="boneClicked(bone, $index)" class="bone-image small small-bone-{{bone.type}}-{{bone.value}}"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="button-set">
+                    <div class="info pull-left" ng-show="hand.mode == 'picking hand'"> {{text.handDialog.FIRST_HELPER}}</div>
+
+                    <button class="btn btn-danger pull-right"
+                            ng-show="hand.mode == 'picking hand'"
+                            ng-click="hand.mode = 'picking options'"> {{text.handDialog.HAND_IS_READY}} <i class="glyphicon glyphicon-arrow-right"></i></button>
+
+                    <div class="info pull-left" ng-show="hand.mode == 'picking options'"> {{text.handDialog.SECOND_HELPER}}  </div>
+
+                    <button class="btn btn-danger pull-right"
+                            ng-show="hand.mode == 'picking options'"
+                            ng-click="calculate()"> {{text.handDialog.COUNT}} <i class="glyphicon glyphicon-arrow-right"></i></button>
+
+                    <button class="btn btn-default pull-right  margin-right"
+                            ng-show="hand.mode == 'picking options'"
+                            ng-click="hand.mode = 'picking hand'"> <i class="glyphicon glyphicon-arrow-left"></i> {{text.handDialog.PREVIOUS_STEP}} </button>
+
+                    <button class="btn btn-danger pull-right" data-dismiss="modal"
+                            ng-show="hand.mode == 'calculation'">  {{text.handDialog.READY}} </button>
+
+                    <button class="btn btn-default pull-right  margin-right"
+                            ng-show="hand.mode == 'calculation'"
+                            ng-click="hand.mode = 'picking options'"> <i class="glyphicon glyphicon-arrow-left"></i> {{text.handDialog.PREVIOUS_STEP}} </button>
+                </div>
+
+                <div class="variators" ng-if="hand.mode == 'picking hand'">
+                    <table>
+                        <tr>
+                            <td ng-repeat="i in [1,2,3,4,5,6,7,8,9]">
+                                <div class="bone-image big big-bone-bamboo-{{i}}" ng-click="addBone('bamboo', i)"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ng-repeat="i in [1,2,3,4,5,6,7,8,9]">
+                                <div class="bone-image big big-bone-man-{{i}}" ng-click="addBone('man', i)"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ng-repeat="i in [1,2,3,4,5,6,7,8,9]">
+                                <div class="bone-image big big-bone-pin-{{i}}" ng-click="addBone('pin', i)"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="bone-image big big-bone-wind-east" ng-click="addBone('wind', 'east')"></div></td>
+                            <td><div class="bone-image big big-bone-wind-north" ng-click="addBone('wind', 'north')"></div></td>
+                            <td><div class="bone-image big big-bone-wind-south" ng-click="addBone('wind', 'south')"></div></td>
+                            <td><div class="bone-image big big-bone-wind-west" ng-click="addBone('wind', 'west')"></div></td>
+                            <td></td>
+                            <td><div class="bone-image big big-bone-dragon-chun" ng-click="addBone('dragon', 'chun')"></div></td>
+                            <td><div class="bone-image big big-bone-dragon-green" ng-click="addBone('dragon', 'green')"></div></td>
+                            <td><div class="bone-image big big-bone-dragon-haku" ng-click="addBone('dragon', 'haku')"></div></td>
+                        </tr>
+                        <tr>
+                            <td ng-repeat="i in [1,2,3,4]"><div class="bone-image big big-bone-flower-{{i}}"  ng-click="addBone('flower', i)"></div></td>
+                            <td></td>
+                            <td ng-repeat="i in [1,2,3,4]"><div class="bone-image big big-bone-season-{{i}}"  ng-click="addBone('season', i)"></div></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="options" ng-show="hand.mode == 'picking options'">
+                    <div class="checkbox">
+                        <label> <input ng-model="hand.options.mahjong" type="checkbox" > {{text.hand.MAHJONG}} </label>
+                    </div>
+                    <div class="checkbox" ng-show="hand.options.mahjong">
+                        <label> <input type="checkbox" ng-model="hand.options.last_bone_from_wall"> {{text.hand.LAST_BONE_FROM_WALL}} </label>
+                    </div>
+                    <div class="checkbox" ng-show="hand.options.mahjong">
+                        <label> <input type="checkbox" ng-model="hand.options.the_only_possible"> {{text.hand.THE_ONLY_POSIBLE}}</label>
+                    </div>
+                    <div class="checkbox" ng-show="hand.options.mahjong">
+                        <label> <input type="checkbox" ng-model="hand.options.kong_robbery"> {{text.hand.KONG_ROBBERY}}</label>
+                    </div>
+                    <div class="checkbox" ng-show="hand.options.mahjong">
+                        <label> <input type="checkbox" ng-model="hand.options.ready_hand_from_start"> {{text.hand.READY_HAND_FROM_START}} </label>
+                    </div>
+                    <div class="checkbox" ng-show="hand.options.mahjong">
+                        <label> <input type="checkbox" ng-model="hand.options.before_dead_wall"> {{text.hand.BEFORE_DEAD_WALL}}</label>
+                    </div>
+                    <div class="checkbox" ng-show="hand.options.mahjong && hand.options.before_dead_wall">
+                        <label> <input type="checkbox" ng-model="hand.options.before_dead_wall_1_pin"> {{text.hand.BEFORE_DAED_WALL_1_PIN}} </label>
+                    </div>
+                    <div class="checkbox" ng-show="hand.options.mahjong">
+                        <label> <input type="checkbox" ng-model="hand.options.free_bone"> {{text.hand.FREE_BONE}} </label>
+                    </div>
+                    <div class="checkbox" ng-show="hand.options.mahjong && hand.options.free_bone">
+                        <label> <input type="checkbox" ng-model="hand.options.free_bone_5_pin"> {{text.hand.FREE_BONE_5_PIN}} </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculation" ng-show="hand.mode == 'calculation'">
+                <table class="table">
+                    <tr ng-repeat = "calculate in score.calculations" >
+                        <td>{{calculate.name}}</td>
+                        <td>{{calculate.points}}</td>
+                    </tr>
+                    <tr class="active" ng-repeat="double in score.doublings">
+                        <td>{{double.name}}</td>
+                        <td>x{{double.count}}</td>
+                    </tr>
+                    <tr class="summ">
+                        <td>{{text.handDialog.SUM}}</td>
+                        <td>{{score.full_score}} <span ng-show="score.full_score != score.score">( &asymp; {{score.score}}) </span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
