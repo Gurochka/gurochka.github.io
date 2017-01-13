@@ -489,7 +489,7 @@ Mahjong.factory('handCalculations', [function() {
             calculateDoublings();
 
             if (score.bonuses.length > 0) {
-                addCalculation(score.bonuses.length* 4, text.hand.scoring);
+                addCalculation(score.bonuses.length* 4, text.hand.scoring.BONUSES);
             }
         }
 
