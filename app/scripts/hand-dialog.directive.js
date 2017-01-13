@@ -1,8 +1,10 @@
-Mahjong.directive('triggerModal', function() {
+Mahjong.directive('handDialog', function() {
     return {
+        restrict: 'AE',
+        templateUrl: 'views/handDialog.html',
         link: function(scope, element, attrs){
 
-            element.on('click', function(){
+            /*element.on('click', function(){
                 $('body').append('<div class="modal-backdrop fade in"></div>');
 
                 var modal = $(attrs.triggerModal);
@@ -20,7 +22,7 @@ Mahjong.directive('triggerModal', function() {
                           .off('click');
                 });
 
-            })
+            })*/
         }
     }
 });

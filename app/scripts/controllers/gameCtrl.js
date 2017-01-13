@@ -21,6 +21,11 @@ Mahjong.controller('gameCtrl', ['$scope', '$http', 'players', 'game', 'storage',
 
     };
 
+    $scope.initial = function(){
+        window.localStorage = {};
+        $scope.game_started = false;
+    };
+
     /* ------------ helpers ---------------- */
 
     $scope.getWindName = function(wind, adjective){
@@ -63,6 +68,10 @@ Mahjong.controller('gameCtrl', ['$scope', '$http', 'players', 'game', 'storage',
 
     $scope.openHandScore = function(wind){
         $scope.$broadcast('handOpened', wind);
+    };
+
+    $scope.handPicked = function(){
+        console.log('hand picked', arguments);
     };
 
     var onHandCalculated = function(event, hand, score){
