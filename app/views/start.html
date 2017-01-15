@@ -1,0 +1,79 @@
+<section class="success" id="start">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Начало игры</h2>
+                <hr class="star-light">
+                <span>Введите имена участников:</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <form name="playersNames" novalidate>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12">
+                            <label>Восток</label>
+                            <input type="text" class="form-control" placeholder="Восток" ng-model="players.east">
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12">
+                            <label>Юг</label>
+                            <input type="text" class="form-control" placeholder="Юг" ng-model="players.south">
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12">
+                            <label>Запад</label>
+                            <input type="text" class="form-control" placeholder="Запад" ng-model="players.west">
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12">
+                            <label>Север</label>
+                            <input type="text" class="form-control" placeholder="Север" ng-model="players.north">
+                        </div> 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="settings">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h3>Настройки</h3>
+                <hr class="star-primary">                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <form name="playersNames" novalidate>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12">
+                            <label>Ставка [денег] на старте:</label>
+                            <input type="number" class="form-control" ng-model="settings.betting">
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12">
+                            <label>Количество игр в одном раунде:</label>
+                            <select class="form-control" ng-model="settings.rounds">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <button type="submit" class="btn btn-success btn-lg" ng-click="next()">Дальше</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

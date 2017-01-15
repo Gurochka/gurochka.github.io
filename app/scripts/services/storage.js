@@ -5,6 +5,9 @@ Mahjong.service('storage', [function() {
         },
         get: function(key){
             return angular.fromJson(localStorage[key]);
+        },
+        remove: function(key){
+        	  localStorage.removeItem(key);
         }
     }
 }]);

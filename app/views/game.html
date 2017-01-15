@@ -1,0 +1,43 @@
+<section class="success" id="start">
+    <div class="container">
+    </div>
+</section>
+
+<section id="settings">
+    <div class="container">
+        <h4> Очки </h4>
+        <table class="table">
+            <tr>
+                <th ng-repeat="(wind, name) in players">
+                    {{wind}} <span class="info">{{name}}</span>
+                </th>
+            </tr>
+            <tbody ng-repeat="game in games">
+            <tr> <td colspan="4" style="text-align: center;" title="Преимущественный ветер - {{getWindName(game.prevailing_wind)}}"> {{getWindName(game.prevailing_wind, true)}} {{text.game.GAME}} </td> </tr>
+            <tr ng-repeat="round in game.rounds">
+                <td ng-repeat="score in round.score track by $index" ng-class="{'text-success strong': round.mahjong_idx == $index}">
+                    {{ score || "&ndash;" }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <h5 class="strong" ng-click="show_result = !show_result">Результаты <span class="caret"></span></h5>
+            <table class="table" ng-show="show_result">
+                <tr><td colspan="4"> <span class="info">Общая сумма очков</span></td></tr>
+                <tr>
+                    <td ng-repeat="player in players">
+                        {{player.score || 0}}
+                    </td>
+                </tr>
+                <tr><td colspan="4"><span class="info">Сумма денюжек</span></td></tr>
+                <tr>
+                    <td ng-repeat="player in players">
+                        {{player.coins || 0}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</section>

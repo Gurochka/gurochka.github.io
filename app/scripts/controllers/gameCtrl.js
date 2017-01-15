@@ -1,4 +1,16 @@
-Mahjong.controller('gameCtrl', ['$scope', '$http', 'players', 'game', 'storage', function($scope, $http, players, game, storage) {
+Mahjong.controller('gameCtrl', ['$scope', 'storage', '$location', function($scope, storage, $location) {
+    var init = function(){
+        $scope.players = storage.get('players');
+        $scope.settings = storage.get('settings');
+        if (!$scope.players || !$scope.settings){
+            $location.path('');
+        }
+    };
+
+    init();
+}]);
+
+/*Mahjong.controller('gameCtrl', ['$scope', '$http', 'players', 'game', 'storage', function($scope, $http, players, game, storage) {
 
     var init = function(){
         $scope.$watch('lang', function(){
@@ -24,11 +36,11 @@ Mahjong.controller('gameCtrl', ['$scope', '$http', 'players', 'game', 'storage',
     $scope.initial = function(){
         window.localStorage = {};
         $scope.game_started = false;
-    };
+    };*/
 
     /* ------------ helpers ---------------- */
 
-    $scope.getWindName = function(wind, adjective){
+    /*$scope.getWindName = function(wind, adjective){
         var wind_names = {
             east:  ['EAST', 'EASTERN'],
             south: ['SOUTH', 'SOUTHERN'],
@@ -52,11 +64,11 @@ Mahjong.controller('gameCtrl', ['$scope', '$http', 'players', 'game', 'storage',
             next_wind = winds[index - 1] || _.last(winds);
         }
         return next_wind;
-    };
+    };*/
 
     /* ------------ end of helpers ---------------- */
 
-    $scope.changeLang = function(lang){
+    /*$scope.changeLang = function(lang){
         $scope.lang = lang;
     };
 
@@ -90,4 +102,4 @@ Mahjong.controller('gameCtrl', ['$scope', '$http', 'players', 'game', 'storage',
 
     init();
 
-}]);
+}]);*/

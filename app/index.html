@@ -5,23 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
- 
+    <!--<base href="/"> -->
 
     <title>Mahjong</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&amp;subset=cyrillic" rel="stylesheet">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/agency.css">
+    <!-- build:css(.tmp) styles/main.css -->    
+    <link rel="stylesheet" href="styles/freelancer.css">
     <link rel="stylesheet" href="styles/main.css">
 
     <!-- endbuild -->
@@ -35,26 +34,20 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Mah Jong</a>
+                <a class="navbar-brand page-scroll" href="/">Mahjong</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="/"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Rules</a>
+                        <a class="page-scroll" href="/#!start">Начать новую игру</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio">ru</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">|</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#team">en</a>
+                        <a class="page-scroll" href="#services">Правила</a>
                     </li>
                 </ul>
             </div>
@@ -85,6 +78,7 @@
     <script src="scripts/services/players.js"></script>
     <script src="scripts/services/game.js"></script>
     <script src="scripts/controllers/gameCtrl.js"></script>
+    <script src="scripts/controllers/startCtrl.js"></script>
     <script src="scripts/controllers/handCtrl.js"></script>
     <script src="scripts/controllers/landingCtrl.js"></script>
     <script src="scripts/services/handCalculations.js"></script>
