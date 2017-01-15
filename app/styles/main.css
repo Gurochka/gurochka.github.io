@@ -33,7 +33,7 @@ a{
 
 
 /* ----------------- navbar --------------- */
-.navbar-header .navbar-brand{
+/*.navbar-header .navbar-brand{
     font-size: 36px;
     line-height: 36px;
     font-weight: bold;
@@ -65,7 +65,7 @@ a{
 }
 .nav li.language a:hover{
     background-color: transparent;
-}
+}*/
 
 
 /* ----------------- end of navbar --------------- */

@@ -5,24 +5,7 @@
 </style>
 
 <div ng-controller="gameCtrl">
-<header class="navbar">
-    <div class="container">
-        <div class="navbar-header">
-            <i class="navbar-brand-icon"></i>
-            <a class="navbar-brand" ng-click="openInitial()"> Mahjong </a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a target="_blank" href="../../mahjong_rules_ru.pdf">{{text.RULES}}</a></li>
-                <li class="language">
-                    <a ng-class="{active: lang == 'ru'}" ng-click="changeLang('ru')">ru</a>
-                    <span class="info"> | </span>
-                    <a ng-class="{active: lang == 'en'}" ng-click="changeLang('en')">en</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</header>
+
 
 <div class="topbar ng-cloak">
 
