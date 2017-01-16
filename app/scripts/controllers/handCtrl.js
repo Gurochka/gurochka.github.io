@@ -8,15 +8,6 @@ Mahjong.controller('handCtrl', ['$scope', 'handCalculations', function($scope, h
             wind: $scope.$resolve.player_wind,
             options: {}
         };
-        console.log($scope.hand);
-
-        $scope.$on('$destroy', function(){
-            console.log('destroy', $scope.score);
-            if ($scope.score){
-                $scope.$emit('handCalculated', $scope.hand, $scope.score.score);
-            }
-        })
-
     };
 
     $scope.addBone = function(type, value){
@@ -67,6 +58,13 @@ Mahjong.controller('handCtrl', ['$scope', 'handCalculations', function($scope, h
     $scope.calculate = function(){
         $scope.hand.mode = 'calculation';
         $scope.score = handCalculations.calculate($scope.hand, $scope.$parent.$parent.text);
+    };
+
+    $scope.close = function(){
+        $scope.$close({ 
+            hand: $scope.hand, 
+            score: $scope.score.score 
+        });
     };
 
     // --------------- private ------------------------

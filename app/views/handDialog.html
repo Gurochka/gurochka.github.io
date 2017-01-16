@@ -31,7 +31,7 @@
                 ng-show="hand.mode == 'picking options'"
                 ng-click="hand.mode = 'picking hand'"> <i class="glyphicon glyphicon-arrow-left"></i> Предыдущий шаг </button>
 
-        <button class="btn btn-danger pull-right" data-dismiss="modal"
+        <button class="btn btn-danger pull-right" ng-click="close()"
                 ng-show="hand.mode == 'calculation'">  Готово </button>
 
         <button class="btn btn-default pull-right  margin-right"
@@ -116,7 +116,7 @@
             <td>x{{double.count}}</td>
         </tr>
         <tr class="summ">
-            <td>{{text.handDialog.SUM}}</td>
+            <td>Сумма</td>
             <td>{{score.full_score}} <span ng-show="score.full_score != score.score">( &asymp; {{score.score}}) </span></td>
         </tr>
     </table>

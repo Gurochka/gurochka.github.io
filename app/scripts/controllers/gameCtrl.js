@@ -28,7 +28,7 @@ Mahjong.controller('gameCtrl', ['$scope', 'storage', '$location', 'players', 'ga
     /* ------------ end of helpers ---------------- */
 
     $scope.openHandScore = function(player){
-        $uibModal.open({            
+        let handInstance = $uibModal.open({            
             templateUrl: 'views/handDialog.html',
             size: 'lg',
             controller: 'handCtrl',
@@ -38,18 +38,20 @@ Mahjong.controller('gameCtrl', ['$scope', 'storage', '$location', 'players', 'ga
                 prevailing_wind: () => _.last($scope.games).prevailing_wind 
             }
         });
+        handInstance.result.then(onHandCalculated);
     };
 
-    var onHandCalculated = function(event, hand, score){
+    var onHandCalculated = function(result){
         var last_game = _.last($scope.games);
 
-        $scope.games = game.updatePlayerScore(hand, score, getPlayerIdx(hand.wind));
+        $scope.games = game.updatePlayerScore(result.hand, result.score, getPlayerIdx(result.hand.wind));
 
         if (game.isNewRound()){
             $scope.players = players.updateScore(last_game, getNextWind);
             $scope.games = game.updateRounds(getNextWind);
         }
-        $scope.$digest();
+        console.log($scope.players);
+        //$scope.$digest();
     };
 
     init();
