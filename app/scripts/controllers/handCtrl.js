@@ -1,13 +1,22 @@
 Mahjong.controller('handCtrl', ['$scope', 'handCalculations', function($scope, handCalculations) {
 
     var init = function(){
-        setDefaultHand();
+        $scope.hand = {
+            mode: 'picking hand',
+            bones: [],
+            prevailing_wind: $scope.$resolve.prevailing_wind,
+            wind: $scope.$resolve.player_wind,
+            options: {}
+        };
+        console.log($scope.hand);
 
-        $('#countPoints').on('hidden.bs.modal', onCloseDialog);
+        $scope.$on('$destroy', function(){
+            console.log('destroy', $scope.score);
+            if ($scope.score){
+                $scope.$emit('handCalculated', $scope.hand, $scope.score.score);
+            }
+        })
 
-        $scope.$on('handOpened', function(event, wind){
-            $scope.hand.wind = wind;
-        });
     };
 
     $scope.addBone = function(type, value){
@@ -64,25 +73,6 @@ Mahjong.controller('handCtrl', ['$scope', 'handCalculations', function($scope, h
 
     var isSameBone = function(first_bone, second_bone){
         return (first_bone && second_bone && first_bone.value == second_bone.value && first_bone.type == second_bone.type);
-    };
-
-    var onCloseDialog = function(){
-        if (!$scope.score) return;
-        $scope.$emit('handCalculated', $scope.hand, $scope.score.score);
-
-        setDefaultHand();
-        $scope.$digest();
-    };
-
-    var setDefaultHand = function(){
-        var games = $scope.$parent.games;
-
-        $scope.hand = {
-            mode: 'picking hand',
-            bones: [],
-            prevailing_wind: (games && games.length && _.last(games).prevailing_wind) || 'east',
-            options: {}
-        };
     };
 
     init();

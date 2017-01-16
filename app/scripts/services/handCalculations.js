@@ -1,3 +1,4 @@
+'use strict';
 Mahjong.factory('handCalculations', [function() {
     var hand, score, text;
 
@@ -7,7 +8,7 @@ Mahjong.factory('handCalculations', [function() {
         var bones = _.compact(arguments),
             is_equal_bones = true;
 
-        $.each(bones, function(idx, bone){
+        _.each(bones, function(bone){
             if (bone.type != bones[0].type || bone.value != bones[0].value || bone.opened != bones[0].opened) is_equal_bones = false;
         });
         return bones.length == arguments.length && is_equal_bones;
@@ -117,7 +118,7 @@ Mahjong.factory('handCalculations', [function() {
 
         // search sequences
         var grouped_bones = _.groupBy(hand.bones, 'type');
-        $.each(grouped_bones, function(bones, type){
+        _.each(grouped_bones, function(type, bones){
             if (_.indexOf(['bamboo', 'pin', 'man'], type) != -1 ){
                 bones = _.sortBy(bones, 'value');
 
@@ -150,7 +151,7 @@ Mahjong.factory('handCalculations', [function() {
 
         // remove single bones (we need to determine pure suit)
         if (hand.bones.length > 0){
-            $.each(hand.bones, function(idx, bone){
+            _.each(hand.bones, function(bone){
                 addCombinaton('one', bone);
             });
             hand.bones = [];
@@ -170,7 +171,7 @@ Mahjong.factory('handCalculations', [function() {
         var limited_combinations = {
 
          // One of each honor/terminal and a pair of honors/terminals.
-            'THIRTEEN_ORPHANS':  function(){
+            'Тринадцать чудес света':  function(){
                 if (_.size(counted_combs) == 2 && counted_combs.one == 12 && counted_combs.pair == 1){
                     return _.filter(combs, function(combo){
                         return isTypeOfBone('terminal', combo.bone) || isTypeOfBone('noble', combo.bone);
@@ -178,32 +179,32 @@ Mahjong.factory('handCalculations', [function() {
                 }
             },
         // No chous, all of the same suit, fully concealed hand
-            'TREASURE': function(){
+            'Найденное сокровище': function(){
                 var first_bone = combs[0].bone;
                 return _.filter(combs, function(combo){
                     return combo.type != 'chou' && combo.type != 'one' && counted_combs.pair == 1 && combo.bone.opened == false && combo.bone.type == first_bone.type;
                 }).length == combs.length;
             },
         // Mahjong with winds and dragons
-            'HONOURS': function(){
+            'Свита императора': function(){
                 return _.filter(combs, function(combo){
                     return (isTypeOfBone('noble', combo.bone) && counted_combs.pair == 1 && !counted_combs.one);
                 }).length == combs.length;
             },
         // Pungs/Kongs of Ones and Nines.
-            'HEADS_AND_TAILS': function(){
+            'Головы и хвосты': function(){
                 return _.filter(combs, function(combo){
                     return (combo.type != 'chou' && combo.type != 'one' && isTypeOfBone('terminal', combo.bone) && counted_combs.pair == 1);
                 }).length == combs.length;
             },
         // All tiles is green: bamboo 2, 3, 4, 6, 8 and green dragons
-            'IMPERIAL_JADE': function(){
+            'Императорский нефрит': function(){
                 return _.filter(combs, function(combo){
                     return (combo.bone.type == 'dragon' && combo.bone.value == 'green') || (combo.bone.type == 'bamboo' && _.indexOf([2, 3, 4, 6, 8], combo.bone.value) != -1);
                 }).length == combs.length;
             },
         // Seven pairs of dragons/winds OR seven pairs of one suit tiles
-            'HEAVENLY_TWINS': function(){
+            'Небесные близнецы': function(){
                 var noble_filtered = _.filter(combs, function(combo){
                         return (combo.type == 'pair' || (combo.type == 'kong' && !combo.bone.opened)) && isTypeOfBone('noble', combo.bone);
                     }),
@@ -214,7 +215,7 @@ Mahjong.factory('handCalculations', [function() {
                 return noble_filtered.length == combs.length || one_suit.length == combs.length;
             },
         // Pangs/kongs of all dragons and one pang/kong and pair of one suit
-            'GRAND_MASTERS': function(){
+            'Трое великих ученых': function(){
                 var dragons = _.filter(combs, function(combo){
                     return (combo.type == 'pang' || combo.type == 'kong') && combo.bone.type == 'dragon';
                 });
@@ -226,29 +227,28 @@ Mahjong.factory('handCalculations', [function() {
                 return (dragons.length == 3 && anothers.length == 2 && got_to_conditions.length == anothers.length);
             },
         // Pangs/kongs of all winds and pair
-            'FOUR_BLESSINGS': function(){
+            'Четыре наслаждения вошли в твою дверь': function(){
                 return _.filter(combs, function(combo){
                     return (combo.type == 'pang' || combo.type == 'kong') && combo.bone.type == 'wind';
                 }).length == 4 && counted_combs.pair == 1;
             },
         // Four Kongs and a pair
-            'FOURFOLD_PLENTY': function(){
+            'Четыре по четыре': function(){
                 return counted_combs.kong == 4 && counted_combs.pair == 1;
             },
         // The Moon is the One of Circles. This is made by a player who upon drawing the last tile from the wall finds that it is the Moon which allows the player to go Mah Jong.
-            'MOON_IN_THE_SEA': function(){
+            'Достать луну со дна моря': function(){
                 return hand.options.before_dead_wall_1_pin;
             },
         // The Plum Blossom is the Five of Circles.  This is made by a player who draws a loose tile (the roof) as a replacement for a Kong, a Flower or a Season and that tile is the Plum Blossom which allows the player to go Mah Jong.
-            'GATHERING_BLOSSOM': function(){
+            'Вырастить виноград на плоской крыше': function(){
                 return hand.options.free_bone_5_pin;
             }
         };
 
-        $.each(limited_combinations, function(title, func){
+        _.each(limited_combinations, function(func, title){
             if (func()) {
-                score.limited = text.hand.limited[title];
-                addCalculation(500, text.hand.LIMITED_COMBINATION + score.limited);
+                addCalculation(500, 'Лимитированная комбинация: ${title}');
                 return false;
             }
         });
@@ -262,7 +262,7 @@ Mahjong.factory('handCalculations', [function() {
      var calculateCombinations = function(){
         if (!score.combinations.length) return;
 
-        $.each(score.combinations, function(idx, combo){
+        _.each(score.combinations, function(combo, idx){
             var scoring = 0;
 
             if (combo.type == 'pang' || combo.type == 'kong'){
@@ -288,13 +288,18 @@ Mahjong.factory('handCalculations', [function() {
             }
 
             if (scoring){
+                let suit = {
+                    "pin": "дотов",
+                    "bamboo": "бамбуков",
+                    "man": "символов",
+                    "dragon": "драконов",
+                    "wind": "ветров"                    
+                }[combo.bone.type];
 
-                var score_text = text.hand.scoring,
-                    suit = score_text[combo.bone.type.toUpperCase()],
-                    names = {
-                        pang: (combo.bone.opened ? score_text.OPENED : score_text.CLOSED) + score_text.PANG + suit + ' ' + combo.bone.value,
-                        kong: (combo.bone.opened ? score_text.OPENED : score_text.CLOSED) + score_text.KONG + suit + ' ' + combo.bone.value,
-                        pair: score_text.PAIR + ' ' + suit
+                let names = {
+                        pang: (combo.bone.opened ? 'Открытый' : 'Закрытый') + ` панг ${suit} ${combo.bone.value}`,
+                        kong: (combo.bone.opened ? 'Открытый' : 'Закрытый') + ` конг ${suit} ${combo.bone.value}`,
+                        pair: 'Пара ${suit}'
                     };
 
                 addCalculation(scoring, names[combo.type]);
@@ -302,10 +307,10 @@ Mahjong.factory('handCalculations', [function() {
         });
 
         if (hand.options.last_bone_from_wall){
-            addCalculation(2, text.hand.LAST_BONE_FROM_WALL);
+            addCalculation(2, 'Кость на выигрыш взята со стены');
         }
         if (hand.options.the_only_possible){
-            addCalculation(2, text.hand.THE_ONLY_POSIBLE);
+            addCalculation(2, 'Последняя кость единственно возможная');
         }
     };
 
@@ -318,54 +323,54 @@ Mahjong.factory('handCalculations', [function() {
 
         var doublings = {
         // Triple or quadruple of dragons
-            'DRAGONS': function(){
+            'Тройка или четвёрка Драконов': function(){
                 return _.filter(combs, function(combo){
                     return (combo.type == 'pang' || combo.type == 'kong') && combo.bone.type == 'dragon';
                 }).length;
             },
         // Triple or quadruple of own winds
-            'PREVAILING_WINDS': function(){
+            'Тройка или четвёрка преимущественных Ветров': function(){
                 return _.filter(combs, function(combo){
                     return (combo.type == 'pang' || combo.type == 'kong') && combo.bone.type == 'wind' && combo.bone.value == hand.prevailing_wind;
                 }).length;
             },
         // Triple or quadruple of prevailing winds
-            'OWN_WINDS': function(){
+            'Тройка или четвёрка собственных Ветров': function(){
                 return _.filter(combs, function(combo){
                     return (combo.type == 'pang' || combo.type == 'kong') && combo.bone.type == 'wind' && combo.bone.value == hand.wind;
                 }).length;
             },
         // Half suite (one suite only + dragons/winds)
-            'HALF_SUITE': function(){
+            'Чистая масть (с Драконами и Ветрами': function(){
                 var suits = _.keys(_.groupBy(combs, function(combo){ return combo.bone.type }));
                 return _.intersection(suits, ['dragon', 'wind']).length > 0 && _.without(suits, 'dragon', 'wind').length == 1;
             },
         // Full suite (one suite only)
-            'FULL_SUITE': function(){
+            'Чистая масть без Драконов и Ветров - удвоение трижды': function(){
                 var suits = _.keys( _.groupBy(combs, function(combo){ return combo.bone.type }));
                 return Number(suits.length == 1 && (suits[0] == 'pin' || suits[0] == 'man' || suits[0] == 'bamboo'))*4;
             },
         // Only 1s, 9s, dragons and winds
-            'ONLY_19_DRAGONS_WINDS': function(){
+            'Присутствуют только Единицы, Девятки, Драконы и Ветры': function(){
                 var suits = _.keys( _.groupBy(combs, function(combo){ return combo.bone.type }));
                 return _.filter(combs, function(combo){
                     return combo.type != 'chou' && (isTypeOfBone('noble', combo.bone) || isTypeOfBone('terminal', combo.bone));
                 }).length == combs.length && _.without(suits, 'dragon', 'wind').length > 0;
             },
          // Only dragons and winds
-            'ONLY_DRAGONS_WINDS': function(){
+            'Только Драконы и Ветры (нет мастей) - удвоение трижды': function(){
                 return Number(_.filter(combs, function(combo){
                     return isTypeOfBone('noble', combo.bone);
                 }).length == combs.length)*4;
             },
         // Full set of one type bonuses
-            'ONE_SUIT': function(){
+            'Полный сет бонусов одного типа!': function(){
                 var bonuses_type_count = _.countBy(score.bonuses, 'type'),
                     whole_bonuses_set = (bonuses_type_count.flower && bonuses_type_count.flower == 4) || (bonuses_type_count.season && bonuses_type_count.season == 4);
                 return whole_bonuses_set ? 4 : 0;
             },
         // Own or prevailing bonus (season or flower)
-            'OWN_PREVAILING_BONUS': function(){
+            'Собственный бонус (или бонус раунда)': function(){
                 var bonuses_type_count = _.countBy(score.bonuses, 'type'),
                     whole_bonuses_set = (bonuses_type_count.flower && bonuses_type_count.flower == 4) || (bonuses_type_count.season && bonuses_type_count.season == 4);
 
@@ -382,10 +387,10 @@ Mahjong.factory('handCalculations', [function() {
             }
         };
 
-        $.each(doublings, function(title, func){
-            var scoring = Number(func());
+        _.each(doublings, function(func, title){
+            let scoring = Number(func());
             if (scoring) {
-                addDouble(text.hand.doublings[title], scoring);
+                addDouble(title, scoring);
             }
         });
 
@@ -393,30 +398,30 @@ Mahjong.factory('handCalculations', [function() {
 
         if (hand.options.mahjong){
             var mahjong_doublings = {
-                'ONLY_PANGS': function(){
+                'Только панги': function(){
                     var combo_types = _.groupBy(combs, 'type');
                     return combo_types.pang && combo_types.pang.length == 4 && combo_types.pair && combo_types.pair.length == 1;
                 },
-                'CONCEALED_HAND': function(){
+                'Полностью закрытая рука': function(){
                     return _.filter(combs, function(combo){
                         return !combo.bone.opened;
                     }).length == combs.length;
                 },
-                'NO_POINTS': function(){
+                'Нет очков (мизер)': function(){
                     return score.calculations.length == 0;
                 },
             // Out on a loose tile
-                'LOOSE_TILE': function(){
+                'Комбинация завершена Свободной костью': function(){
                     return hand.options.free_bone;
                 },
             // Out on last tile of wall
-                'LAST_TILE': function(){
+                'Маджонг собран на последней кости перед мертвой стеной': function(){
                     return hand.options.before_dead_wall;
                 },
-                'ROBBING_KONG': function(){
+                'Совершено ограбление Конга': function(){
                     return hand.options.kong_robbery;
                 },
-                'LITTLE_THREE_WINDS': function(){
+                'В комбинации 3 группы Ветров и пара Ветров': function(){
                     var winds = _.groupBy(combs, function(combo){ return combo.bone.type }).wind;
                     if (winds && winds.length == 4){
                         winds = _.groupBy(winds, 'type');
@@ -424,7 +429,7 @@ Mahjong.factory('handCalculations', [function() {
                     }
                     return false;
                 },
-                'LITTLE_THREE_DRAGONS': function(){
+                'В комбинации 2 группы Драконов и пара Драконов': function(){
                     var dragons = _.groupBy(combs, function(combo){ return combo.bone.type }).dragon;
                     if (dragons && dragons.length == 3){
                         dragons = _.groupBy(dragons, 'type');
@@ -433,24 +438,24 @@ Mahjong.factory('handCalculations', [function() {
                     return false;
                 },
             // "Ready hand" after first discard
-                'READY_HAND': function(){
+                'Просящая рука на первой раздаче': function(){
                     return hand.options.ready_hand_from_start;
                 },
             // Two or three kongs
-                'TWO_THRE_KONGS': function(){
+                'Два или три конга': function(){
                     var kongs = _.groupBy(combs, 'type').kong;
                     return kongs && kongs.length > 2 && kongs.length < 4;
                 }
             };
 
-            $.each(mahjong_doublings, function(title, func){
+            _.each(mahjong_doublings, function(func, title){
                 var scoring = Number(func());
                 if (scoring) {
-                    addDouble(text.hand.mahjong_doublings[title], scoring);
+                    addDouble(title, scoring);
                 }
             });
 
-            addCalculation(20, text.hand.scoring.MAHJONG);
+            addCalculation(20, 'Маджонг');
         }
     };
 
@@ -462,7 +467,7 @@ Mahjong.factory('handCalculations', [function() {
             return memo + calc.points;
         }, 0);
 
-        $.each(score.doublings, function(idx, doubling){
+        _.each(score.doublings, function(doubling){
             score.full_score = doubling.count*score.full_score;
         });
         score.score = score.full_score > 500 ? 500 : score.full_score;
@@ -489,7 +494,7 @@ Mahjong.factory('handCalculations', [function() {
             calculateDoublings();
 
             if (score.bonuses.length > 0) {
-                addCalculation(score.bonuses.length* 4, text.hand.scoring.BONUSES);
+                addCalculation(score.bonuses.length* 4, 'Бонусы');
             }
         }
 

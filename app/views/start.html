@@ -59,6 +59,22 @@
                     </div>
                     <div class="row control-group">
                         <div class="form-group col-xs-12">
+                            <label>Сумма лимита:</label>
+                            <input type="number" class="form-control" ng-model="settings.limit">
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12">
+                            <label>Количество игроков:</label>
+                            <select class="form-control" ng-model="settings.players_count">
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12">
                             <label>Количество игр в одном раунде:</label>
                             <select class="form-control" ng-model="settings.rounds">
                                 <option value="1">1</option>

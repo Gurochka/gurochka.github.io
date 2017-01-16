@@ -1,10 +1,13 @@
 Mahjong.service('players', ['storage', function(storage) {
-    var players = storage.get('players') || [{wind: 'east'},{wind: 'south'},{wind: 'west'},{wind: 'north'}];
+    var $players = storage.get('players') || [{wind: 'east'},{wind: 'south'},{wind: 'west'},{wind: 'north'}];
+    
+    let winds = ['east', 'south', 'west', 'north'],
+        players = [];
+    
+    angular.forEach($players, (value, key) => players.push({wind: key, name: value}));
 
     return {
-        get: function(){
-            return players;
-        },
+        get: () => players,
 
         newGame: function(){
             var winds = ['east', 'south', 'west', 'north'];

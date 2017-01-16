@@ -1,5 +1,30 @@
-<section class="success" id="start">
-    <div class="container">
+<section class="success" id="table">
+    <div class="container rounds">
+	        <table>
+	            <tr>
+	                <td></td>
+	                <td class="wind player-second" ng-click="openHandScore(players[3])" trigger-modal="#countPoints">
+	                    <span ng-class="players[3].wind">{{players[3].wind}}</span> <div class="info">{{players[3].name}}</div>
+	                </td>
+	                <td></td>
+	            </tr>
+	            <tr>
+	                <td class="wind player-first" ng-click="openHandScore(players[0])" trigger-modal="#countPoints">
+	                    <span ng-class="players[0].wind">{{players[0].wind}}</span> <div class="info">{{players[0].name}}</div>
+	                </td>
+	                <td><div class="players-table"></div></td>
+	                <td class="wind player-third" ng-click="openHandScore(players[2])" trigger-modal="#countPoints">
+	                    <span ng-class="players[2].wind">{{players[2].wind}}</span> <div class="info">{{players[2].name}}</div>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td></td>
+	                <td class="wind player-fourth" ng-click="openHandScore(players[1])" trigger-modal="#countPoints">
+	                    <span ng-class="players[1].wind">{{players[1].wind}}</span> <div class="info">{{players[1].name}}</div>
+	                </td>
+	                <td></td>
+	            </tr>
+	        </table>
     </div>
 </section>
 
@@ -8,12 +33,12 @@
         <h4> Очки </h4>
         <table class="table">
             <tr>
-                <th ng-repeat="(wind, name) in players">
-                    {{wind}} <span class="info">{{name}}</span>
+                <th ng-repeat="player in players">
+                    {{player.wind}} <span class="info">{{player.name}}</span>
                 </th>
             </tr>
             <tbody ng-repeat="game in games">
-            <tr> <td colspan="4" style="text-align: center;" title="Преимущественный ветер - {{getWindName(game.prevailing_wind)}}"> {{getWindName(game.prevailing_wind, true)}} {{text.game.GAME}} </td> </tr>
+            <tr> <td colspan="4" style="text-align: center;" title=""> Преимущественный ветер - <span class="uppercase">{{game.prevailing_wind}} </span> </td> </tr>
             <tr ng-repeat="round in game.rounds">
                 <td ng-repeat="score in round.score track by $index" ng-class="{'text-success strong': round.mahjong_idx == $index}">
                     {{ score || "&ndash;" }}
@@ -22,8 +47,8 @@
             </tbody>
         </table>
         <div>
-            <h5 class="strong" ng-click="show_result = !show_result">Результаты <span class="caret"></span></h5>
-            <table class="table" ng-show="show_result">
+            <h5 class="strong">Результаты</h5>
+            <table class="table">
                 <tr><td colspan="4"> <span class="info">Общая сумма очков</span></td></tr>
                 <tr>
                     <td ng-repeat="player in players">
@@ -40,4 +65,4 @@
         </div>
 
     </div>
-</section>
+</section>  

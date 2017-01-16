@@ -2,7 +2,9 @@ Mahjong.controller('startCtrl', ['$scope', 'storage', '$location', function($sco
 	$scope.players = {};
 	$scope.settings = {
 		betting: 2000,
-		rounds: "1"
+		rounds: "1",
+		players_count: "4",
+		limit: 500
 	};
 
 	storage.remove('players');

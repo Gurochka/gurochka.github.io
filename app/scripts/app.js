@@ -1,4 +1,4 @@
-Mahjong = angular.module('mahjong', ['ngRoute']);
+Mahjong = angular.module('mahjong', ['ngRoute', 'ui.bootstrap']);
 
 Mahjong.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 	//$locationProvider.html5Mode(true);

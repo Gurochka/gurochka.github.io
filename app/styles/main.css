@@ -4,6 +4,9 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 .capitalize{
     text-transform: capitalize;
 }
+.uppercase{ 
+    text-transform: uppercase;
+}
 
 .btn-primary{
     background-color: #2C3E4D;
@@ -13,7 +16,9 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     color: #18BC9C;
     border-color: #2C3E4D;
 }
-
+section:first-child{
+    margin-top: 100px;
+}
 /*--------------- landing page------------------*/
 .btn-start{
     margin: 2em auto;
@@ -111,7 +116,7 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }*/
 /* ----------------- end of topbar --------------- */
 
-/*.rounds table{
+.rounds table{
     border: 1px solid lightgrey;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     margin: 0 auto;
@@ -159,9 +164,10 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     font-size: 14px;
 }
 
-.modal-dialog{
+/* ------------------ hand dialog ------------------*/
+/*.modal-dialog{
     width: 800px;
-}
+}*/
 .modal-dialog .button-set{
     margin-top: 10px;
     min-height: 40px;
@@ -281,7 +287,7 @@ footer {
     height: 48px;
     background-size: 288px 336px;
 }
-*/
+
 .small-bone-bamboo-1{ background-position: 0 0;  }
 .small-bone-bamboo-2{ background-position: -48px 0;  }
 .small-bone-bamboo-3{ background-position: -96px 0;  }

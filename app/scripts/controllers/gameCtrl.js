@@ -1,10 +1,55 @@
-Mahjong.controller('gameCtrl', ['$scope', 'storage', '$location', function($scope, storage, $location) {
+Mahjong.controller('gameCtrl', ['$scope', 'storage', '$location', 'players', 'game', '$uibModal', function($scope, storage, $location, players, game, $uibModal) {
     var init = function(){
-        $scope.players = storage.get('players');
         $scope.settings = storage.get('settings');
-        if (!$scope.players || !$scope.settings){
-            $location.path('');
+        $scope.players = players.get();
+        $scope.games = game.get();
+
+        $scope.$on('handCalculated', onHandCalculated);
+    };
+
+    /* ------------ helpers ---------------- */
+
+    var getPlayerIdx = function(wind){
+        var player = _.findWhere($scope.players, {wind: wind});
+        return _.indexOf($scope.players, player);
+    };
+
+    var getNextWind = function(wind, clockwise){
+        var winds = ['east', 'south', 'west', 'north'],
+            index = _.indexOf(winds, wind);
+
+        var next_wind = winds[index + 1] || winds[0];
+        if (clockwise){
+            next_wind = winds[index - 1] || _.last(winds);
         }
+        return next_wind;
+    };
+
+    /* ------------ end of helpers ---------------- */
+
+    $scope.openHandScore = function(player){
+        $uibModal.open({            
+            templateUrl: 'views/handDialog.html',
+            size: 'lg',
+            controller: 'handCtrl',
+            scope: $scope,
+            resolve: {
+                player_wind: () => player.wind,
+                prevailing_wind: () => _.last($scope.games).prevailing_wind 
+            }
+        });
+    };
+
+    var onHandCalculated = function(event, hand, score){
+        var last_game = _.last($scope.games);
+
+        $scope.games = game.updatePlayerScore(hand, score, getPlayerIdx(hand.wind));
+
+        if (game.isNewRound()){
+            $scope.players = players.updateScore(last_game, getNextWind);
+            $scope.games = game.updateRounds(getNextWind);
+        }
+        $scope.$digest();
     };
 
     init();
