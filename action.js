@@ -1,3 +1,4 @@
+const Main={template:''}
 const Path3627700={template:`
 		<div class="card">
 	      <div class="card-body">
