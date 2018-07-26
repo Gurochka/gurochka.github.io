@@ -1,7 +1,7 @@
 const Main={template:`
 	    <div class="card">
 	      <div class="card-body">
-	        <p>ÂëÖ ßàÞÓàÐÜÜØáâ, ßàØÔÕâáï ÝÕÜÝÞÓÞ ßÞâàãÔØâìáï. </p>
+	        <p>ôÙÖ ÐÒÏÇÒÁÍÍÉÓÔ, ÐÒÉÄÅÔÓÑ ÎÅÍÎÏÇÏ ÐÏÔÒÕÄÉÔØÓÑ.</p>
 	      </div>
 	    </div>
 	`},Path3627700={template:`
