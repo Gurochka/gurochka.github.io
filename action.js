@@ -1,10 +1,4 @@
-const Main={template:`
-	    <div class="card">
-	      <div class="card-body">
-	        <p>ôÙÖ ÐÒÏÇÒÁÍÍÉÓÔ, ÐÒÉÄÅÔÓÑ ÎÅÍÎÏÇÏ ÐÏÔÒÕÄÉÔØÓÑ.</p>
-	      </div>
-	    </div>
-	`},Path3627700={template:`
+const Path3627700={template:`
 		<div class="card">
 	      <div class="card-body">
 	        <p>Нажми на кнопку тысячу раз!</p>
