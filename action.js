@@ -1,4 +1,4 @@
-const Main={template:''}
+const Main={template:'<div></div>'}
 const Path3627700={template:`
 		<div class="card">
 	      <div class="card-body">
