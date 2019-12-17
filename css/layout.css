@@ -5718,7 +5718,8 @@ textarea.form-control {
   }
   .navbar .navbar-nav .nav-item .dropdown-menu {
     position: absolute;
-    display: block
+    display: -webkit-box;
+    display: flex
   }
 }
 footer {
